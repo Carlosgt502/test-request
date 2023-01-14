@@ -20,9 +20,9 @@ async function getToken() {
         'user-agent': USER_AGENT
       },
       params: data
-    });
-    let token = JSON.parse(response)['access_token'];
-    let expires = parseInt(JSON.parse(response)['expires_in']);
+    }).then(response=>response.json());
+    let token = response['access_token'];
+    let expires = parseInt(response['expires_in']);
     localStorage.setItem('token', token);
     localStorage.setItem('expires', Date.now() + expires);
   }
