@@ -12,7 +12,7 @@ async function getToken() {
     let url = new URL('https://api.kamyroll.tech/auth/v1/token');
     url.search = new URLSearchParams(data);
 
-    let response = await axios(url.toString(), {
+    let response = await fetch(url.toString(), {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -34,7 +34,7 @@ async function getData(video_id) {
     await getToken();
     let localToken = localStorage.getItem('token');
 
-    let response_media = await axios('https://api.kamyroll.tech/videos/v1/streams?channel_id=crunchyroll&id=' + video_id + '&locale=pt-BR', {
+    let response_media = await fetch('https://api.kamyroll.tech/videos/v1/streams?channel_id=crunchyroll&id=' + video_id + '&locale=pt-BR', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
